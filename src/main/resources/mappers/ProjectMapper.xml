@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.activity.test.dao.ProjectDao">
+
+    <resultMap id="ProjectList" type="com.activity.test.dto.Project">
+        <id column="p_id" property="p_id"></id>
+        <result column="p_name" property="p_name"></result>
+    </resultMap>
+
+    <select id="searchProjectList" resultMap="ProjectList">
+        SELECT * FROM test_project
+    </select>
+
+    <insert id="insertProject" parameterType="com.activity.test.dto.Project"
+            useGeneratedKeys="true" keyProperty="p_id" keyColumn="p_id">
+        INSERT INTO `test_project` (`p_name`)
+        VALUES(#{p_name});
+    </insert>
+
+    <delete id="deleteProject" parameterType="java.lang.String">
+        DELETE FROM test_project
+        <trim prefix="WHERE">
+            <if test="_parameter != null">
+                p_id = #{p_id}
+            </if>
+        </trim>
+    </delete>
+
+    <update id="modifyProject" parameterType="com.activity.test.dto.Project">
+        UPDATE test_project
+        <set>
+            <if test="p_name != null">
+                p_name = #{p_name}
+            </if>
+        </set>
+        WHERE p_id =#{p_id}
+    </update>
+
+
+
+</mapper>

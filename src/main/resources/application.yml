@@ -1,0 +1,31 @@
+server:
+  port: 7777
+spring:
+  application:
+    name:  new-activity
+  redis:
+    database: 1
+    host: node.td-k8s.com
+    port: 1379
+    password: mWRK6joVy5No
+    timeout: 10ms
+  quartz:
+    job-store-type: jdbc
+  datasource:
+    deploy:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.100.99.164:3306/deploy?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+      username: root
+      password: 123456a
+    sms:
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      jdbc-url: jdbc:mysql://10.100.12.118:3306/sms_manager?useUnicode=true&characterEncoding=utf8&allowMultiQueries=true&useSSL=false
+      username: test
+      password: L1a4yCP9/EE+kY2t
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  support-methods-arguments: true
+  params: count=countSql
