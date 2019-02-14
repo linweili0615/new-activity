@@ -2,7 +2,7 @@ package com.activity.test.dto;
 
 public class ProjectExtend {
     private Integer e_id;
-    private Integer p_id;
+    private String p_name;
     private String branch;
     private String md5;
     private String modify_content;
@@ -13,9 +13,9 @@ public class ProjectExtend {
     public ProjectExtend() {
     }
 
-    public ProjectExtend(Integer e_id, Integer p_id, String branch, String md5, String modify_content, String modify_tester, String modify_date, String status) {
+    public ProjectExtend(Integer e_id, String p_name, String branch, String md5, String modify_content, String modify_tester, String modify_date, String status) {
         this.e_id = e_id;
-        this.p_id = p_id;
+        this.p_name = p_name;
         this.branch = branch;
         this.md5 = md5;
         this.modify_content = modify_content;
@@ -32,12 +32,12 @@ public class ProjectExtend {
         this.e_id = e_id;
     }
 
-    public Integer getP_id() {
-        return p_id;
+    public String getP_name() {
+        return p_name;
     }
 
-    public void setP_id(Integer p_id) {
-        this.p_id = p_id;
+    public void setP_name(String p_name) {
+        this.p_name = p_name;
     }
 
     public String getBranch() {
@@ -92,7 +92,7 @@ public class ProjectExtend {
     public String toString() {
         return "ProjectExtend{" +
                 "e_id=" + e_id +
-                ", p_id=" + p_id +
+                ", p_name='" + p_name + '\'' +
                 ", branch='" + branch + '\'' +
                 ", md5='" + md5 + '\'' +
                 ", modify_content='" + modify_content + '\'' +

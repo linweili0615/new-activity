@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.activity.test.dao.TesterDao">
+
+    <resultMap id="TesterList" type="com.activity.test.dto.Tester">
+        <id column="t_id" property="t_id"></id>
+        <result column="t_name" property="t_name"></result>
+    </resultMap>
+
+    <select id="searchTesterList" resultMap="TesterList">
+        SELECT * FROM tester
+    </select>
+
+
+</mapper>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.activity.test.dao.ProjectExtendDao">
+
+    <resultMap id="ProjectExtendList" type="com.activity.test.dto.ProjectExtend">
+        <id column="e_id" property="e_id"></id>
+        <result column="p_name" property="p_name"></result>
+        <result column="branch" property="branch"></result>
+        <result column="md5" property="md5"></result>
+        <result column="modify_content" property="modify_content"></result>
+        <result column="modify_tester" property="modify_tester"></result>
+        <result column="modify_date" property="modify_date"></result>
+        <result column="status" property="status"></result>
+    </resultMap>
+
+    <select id="searchProjectExtendList" resultMap="ProjectExtendList">
+        SELECT * FROM test_project_extend
+    </select>
+
+    <select id="searchProjectExtendById" resultType="com.activity.test.dto.ProjectExtend">
+        SELECT * FROM test_project_extend
+        <trim prefix="WHERE">
+            <if test="_parameter != null">
+                e_id = #{e_id}
+            </if>
+        </trim>
+    </select>
+
+    <insert id="insertProjectExtend" parameterType="com.activity.test.dto.ProjectExtend"
+            useGeneratedKeys="true" keyProperty="e_id" keyColumn="e_id">
+        INSERT INTO `test_project_extend` (
+        `p_name`,
+        `branch`,
+        `md5`,
+        `modify_content`,
+        `modify_tester`,
+        `modify_date`,
+        `status`
+        )
+        VALUES
+            (
+                #{p_name},
+                #{branch},
+                #{md5},
+                #{modify_content},
+                #{modify_tester},
+                NOW(),
+                #{status}
+            );
+    </insert>
+
+    <delete id="deleteProjectExtend" parameterType="java.lang.String">
+        DELETE FROM test_project_extend
+        <trim prefix="WHERE">
+            <if test="_parameter != null">
+                e_id = #{e_id}
+            </if>
+        </trim>
+    </delete>
+
+    <update id="modifyProjectExtend" parameterType="com.activity.test.dto.ProjectExtend">
+        UPDATE test_project_extend
+        <set>
+            <if test="p_name != null">
+                p_name = #{p_name},
+            </if>
+            <if test="branch != null">
+                branch = #{branch},
+            </if>
+            <if test="md5 != null">
+                md5 = #{md5},
+            </if>
+            <if test="modify_content != null">
+                modify_content = #{modify_content},
+            </if>
+            <if test="modify_tester != null">
+                modify_tester = #{modify_tester},
+            </if>
+            <if test="status != null">
+                status = #{status},
+            </if>
+            modify_date = NOW()
+        </set>
+        WHERE e_id =#{e_id}
+    </update>
+
+</mapper>
