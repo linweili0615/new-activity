@@ -1,6 +1,6 @@
 package com.activity.test.controller;
 
-import com.activity.test.dto.Tester;
+import com.activity.test.domain.TesterL;
 import com.activity.test.service.TesterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +16,7 @@ public class TesterController {
     private TesterService testerService;
 
     @GetMapping("/list")
-    public List<Tester> getTesterList(){
+    public List<TesterL> getTesterList(){
         return testerService.getTesterList();
     }
 }
