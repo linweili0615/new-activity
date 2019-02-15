@@ -12,6 +12,15 @@
         SELECT * FROM test_project
     </select>
 
+    <select id="searchProjectByParams" resultType="com.activity.test.dto.Project">
+        SELECT * FROM test_project
+        <trim prefix="WHERE">
+            <if test="_parameter != null">
+                p_name = #{p_name}
+            </if>
+        </trim>
+    </select>
+
     <insert id="insertProject" parameterType="com.activity.test.dto.Project"
             useGeneratedKeys="true" keyProperty="p_id" keyColumn="p_id">
         INSERT INTO `test_project` (`p_name`)

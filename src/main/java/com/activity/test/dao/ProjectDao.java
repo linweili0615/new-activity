@@ -9,4 +9,6 @@ public interface ProjectDao {
     Integer deleteProject(Integer p_id);
     Integer modifyProject(Project project);
     List<Project> searchProjectList();
+
+    Project searchProjectByParams(Project project);
 }

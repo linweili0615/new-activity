@@ -1,13 +1,13 @@
-package com.activity.test.domain;
+package com.activity.test.dto;
 
-public class TesterL {
+public class SelectDTO {
     private String value;
     private String label;
 
-    public TesterL() {
+    public SelectDTO() {
     }
 
-    public TesterL(String value, String label) {
+    public SelectDTO(String value, String label) {
         this.value = value;
         this.label = label;
     }

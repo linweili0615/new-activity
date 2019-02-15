@@ -2,9 +2,11 @@ package com.activity.test.service;
 
 import com.activity.test.dao.ProjectDao;
 import com.activity.test.dto.Project;
+import com.activity.test.dto.SelectDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -24,7 +26,18 @@ public class ProjectService {
         return projectDao.modifyProject(project);
     }
 
-    public List<Project> getProjectList(){
-        return projectDao.searchProjectList();
+    public List<SelectDTO> getProjectList(){
+
+        List<SelectDTO> selectDTOS = new ArrayList<>();
+        List<Project> projects= projectDao.searchProjectList();
+        for (Project project:projects) {
+            selectDTOS.add(new SelectDTO(project.getP_name(),project.getP_name()));
+        }
+        return selectDTOS;
+
+    }
+
+    public Project getProjectByParams(Project project) {
+        return projectDao.searchProjectByParams(project);
     }
 }

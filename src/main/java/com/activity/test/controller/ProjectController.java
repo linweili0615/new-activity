@@ -1,6 +1,10 @@
 package com.activity.test.controller;
 
+import com.activity.test.domain.LResult;
+import com.activity.test.domain.Result;
 import com.activity.test.dto.Project;
+import com.activity.test.dto.SelectDTO;
+import com.activity.test.keys.ResultType;
 import com.activity.test.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,15 +20,21 @@ public class ProjectController {
     private ProjectService projectService;
 
     @PostMapping("/add")
-    public String createProject(@RequestBody String p_name){
+    public Result createProject(@RequestBody String p_name){
         Project project = new Project();
         project.setP_name(p_name);
         try {
-            projectService.addProject(project);
-            return "ok";
+            Project p1 = projectService.getProjectByParams(project);
+            if(null == p1){
+                projectService.addProject(project);
+                return new Result(ResultType.SUCCESS,"ok");
+            }else {
+                return new Result(ResultType.FAIL,"该服务名称已存在");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
-            return e.getMessage();
+            return new Result(ResultType.ERROR,e.getMessage());
         }
 
     }
@@ -52,12 +62,13 @@ public class ProjectController {
     }
 
     @GetMapping("/list")
-    public List<Project> getProjectList(){
+    public LResult getProjectList(){
         try {
-            return projectService.getProjectList();
+             List<SelectDTO> data = projectService.getProjectList();
+             return new LResult(ResultType.SUCCESS,"ok",data);
         } catch (Exception e) {
             e.printStackTrace();
-            return null;
+            return new LResult(ResultType.ERROR,e.getMessage());
         }
     }
 
