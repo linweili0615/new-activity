@@ -15,7 +15,7 @@
     </resultMap>
 
     <select id="searchProjectExtendList" resultMap="ProjectExtendList">
-        SELECT * FROM test_project_extend ORDER BY modify_date DESC
+        SELECT * FROM test_project_extend ORDER BY e_id DESC ,modify_date DESC
     </select>
 
     <select id="searchProjectExtendById" resultType="com.activity.test.dto.ProjectExtend">
